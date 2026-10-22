@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>Food Delivery Intelligence</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/script.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-icon">F</span><span>Food<span class="accent">IQ</span></span></div>
+    <p class="side-label">WORKSPACE</p>
+    <a class="nav active" href="#dashboard">▦ &nbsp; Dashboard</a>
+    <a class="nav" href="#explorer">⌕ &nbsp; Food Explorer</a>
+    <a class="nav" href="#insights">◷ &nbsp; Insights</a>
+    <div class="sidebar-bottom">
+      <div class="status-dot"></div>
+      <span>Food analytics workspace</span>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">INTELLIGENCE PLATFORM</p>
+        <h1>Food Intelligence Dashboard</h1>
+        <p class="muted">Explore Indian cuisine through data and insights.</p>
+      </div>
+      <button class="refresh-btn" id="refreshBtn">↻ Refresh data</button>
+    </header>
+
+    <div id="errorBox" class="error-box" hidden></div>
+    <div id="loading" class="loading">Loading your food dataset...</div>
+
+    <section id="dashboard" class="kpi-grid">
+      <article class="kpi-card">
+        <p>Total Food Items</p><h2 id="totalFoods">—</h2>
+        <span class="kpi-note">Records in dataset</span>
+      </article>
+      <article class="kpi-card">
+        <p>Food Categories</p><h2 id="totalCourses">—</h2>
+        <span class="kpi-note">Distinct courses</span>
+      </article>
+      <article class="kpi-card">
+        <p>Regions</p><h2 id="totalRegions">—</h2>
+        <span class="kpi-note">Cuisine coverage</span>
+      </article>
+      <article class="kpi-card">
+        <p>Vegetarian Items</p><h2 id="totalVeg">—</h2>
+        <span class="kpi-note">Matching diet labels</span>
+      </article>
+    </section>
+
+    <section id="insights" class="chart-grid">
+      <article class="panel">
+        <div class="panel-heading">
+          <div><h3>Food by Course</h3><p>Distribution across meal categories</p></div>
+        </div>
+        <div class="chart-wrap"><canvas id="courseChart"></canvas></div>
+      </article>
+      <article class="panel">
+        <div class="panel-heading">
+          <div><h3>Food by Diet</h3><p>Diet labels in the dataset</p></div>
+        </div>
+        <div class="chart-wrap"><canvas id="dietChart"></canvas></div>
+      </article>
+    </section>
+
+    <section id="explorer" class="panel explorer-panel">
+      <div class="panel-heading explorer-heading">
+        <div><h3>Food Explorer</h3><p>Search and filter the available food records.</p></div>
+        <span id="resultCount" class="result-count">0 results</span>
+      </div>
+
+      <div class="filters">
+        <input id="searchInput" type="search" placeholder="Search food, ingredient, flavor...">
+        <select id="dietFilter"><option value="">All diets</option></select>
+        <select id="courseFilter"><option value="">All courses</option></select>
+        <select id="regionFilter"><option value="">All regions</option></select>
+        <button id="filterBtn" class="primary-btn">Apply filters</button>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Food Name</th><th>Diet</th><th>Course</th>
+              <th>Region</th><th>Prep (min)</th><th>Cook (min)</th>
+            </tr>
+          </thead>
+          <tbody id="foodTable">
+            <tr><td colspan="6">Loading food records...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-footnote">Values are displayed as recorded in your dataset.</p>
+    </section>
+
+    <footer>FoodIQ · Food analytics and exploration · Powered by your dataset</footer>
+  </main>
+</body>
+</html>
